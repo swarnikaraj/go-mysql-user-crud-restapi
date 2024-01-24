@@ -21,3 +21,37 @@ func init(){
    db.AutoMigrate(&User{})
 
 }
+
+
+func (u *User) UserCreator() *User{
+	
+      
+		db.Create(&u)
+	
+	return u
+   
+}
+
+func AllUserGetter() []User{
+   var Users []User
+   db.Find(&Users)
+   return Users
+}
+
+func SinglerUserGetter(Id int64) (*User, *gorm.DB){
+    
+	var SingleUser User
+	db:=db.Where("ID=?",Id).Find(&SingleUser)
+	return &SingleUser,db
+}
+
+func (u *User) UserRemover(ID int64) *User{
+     var DeletedUser User
+	 db.Where("ID=?",ID).Delete(DeletedUser)
+	 return &DeletedUser
+}
+
+
+
+
+
