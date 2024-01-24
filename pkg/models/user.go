@@ -32,13 +32,13 @@ func (u *User) UserCreator() *User{
    
 }
 
-func AllUserGetter() []User{
+func (u *User) AllUserGetter() []User{
    var Users []User
    db.Find(&Users)
    return Users
 }
 
-func SinglerUserGetter(Id int64) (*User, *gorm.DB){
+func (u *User) SinglerUserGetter(Id int64) (*User, *gorm.DB){
     
 	var SingleUser User
 	db:=db.Where("ID=?",Id).Find(&SingleUser)
