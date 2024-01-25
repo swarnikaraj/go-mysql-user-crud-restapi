@@ -11,9 +11,16 @@ import (
 func main() {
 
 	r := mux.NewRouter()
-	routes.UserRoutes(r)
-	r.Handle("/",r)
 	
+    userRouter:=r.PathPrefix("/user").Subrouter()
+    routes.UserRoutes(userRouter)
+
+	
+	r.HandleFunc("/",func(w http.ResponseWriter, r *http.Request) {
+	  fmt.Fprintf(w,"Welcome to the User Route")
+	})
+	r.Handle("/user",r)
+
     fmt.Print("Server is running on 500")
 	err:=http.ListenAndServe(":5000",r)
 	if err!=nil{

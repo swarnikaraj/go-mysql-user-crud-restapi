@@ -47,7 +47,7 @@ func (u *User) SinglerUserGetter(Id int64) (*User, *gorm.DB){
 
 func (u *User) UserRemover(ID int64) *User{
      var DeletedUser User
-	 db.Where("ID=?",ID).Delete(DeletedUser)
+	 db.Where("ID=?",ID).Delete(&DeletedUser)
 	 return &DeletedUser
 }
 
