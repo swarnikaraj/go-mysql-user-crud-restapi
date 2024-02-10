@@ -16,7 +16,7 @@ type User struct {
 }
 
 func init(){
-	config.CreateDbConnect()
+   config.CreateDbConnect()
    db=config.GetDbConnection()
    db.AutoMigrate(&User{})
 
